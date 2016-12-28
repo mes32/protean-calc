@@ -1,1 +1,1 @@
-# protean-calc
+# protean-calculator
