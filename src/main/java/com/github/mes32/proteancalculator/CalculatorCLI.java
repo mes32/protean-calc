@@ -16,11 +16,11 @@ class CalculatorCLI {
 
     public boolean evaluate(BufferedReader reader) {
         System.out.println("CalculatorCLI.evaluate() - BufferedReader");
-        return true;
+        return false;
     }
 
     public boolean evaluate(String line) {
         System.out.println("CalculatorCLI.evaluate() - String");
-        return true;
+        return false;
     }
 }

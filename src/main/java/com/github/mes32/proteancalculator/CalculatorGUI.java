@@ -8,14 +8,28 @@
 package com.github.mes32.proteancalculator;
 
 import java.io.*;
+import javax.swing.*;
 
-class CalculatorGUI {
+class CalculatorGUI extends JFrame {
+
+    private static final String GUI_TITLE = "Calculator";
+
     CalculatorGUI(boolean showConfig) {
+        super(GUI_TITLE);
+
+        String labelText = "";
         if (showConfig) {
-            System.out.println(" - CalculatorGUI - show configuration GUI");
+            labelText = "showConfig = TRUE";
             new ConfigurationGUI();
         } else {
-            System.out.println(" - CalculatorGUI - don't show configuration GUI");
+            labelText = "showConfig = FALSE";
         }
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel label = new JLabel(labelText);
+        getContentPane().add(label);
+        pack();
+        setVisible(true);
     }
 }
