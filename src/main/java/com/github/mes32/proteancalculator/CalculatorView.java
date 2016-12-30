@@ -7,6 +7,7 @@
 
 package com.github.mes32.proteancalculator;
 
+import java.awt.Dimension;
 import java.io.*;
 import javax.swing.*;
 
@@ -20,12 +21,32 @@ class CalculatorView extends JFrame {
         super(GUI_TITLE);
         this.viewModel = viewModel;
         this.controller = controller;
- 
+
+        JPanel mainPanel = intiMainPanel();
+        add(mainPanel);
+
+        pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    private JPanel intiMainPanel() {
+        JPanel mainPanel = new JPanel();
+
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.LINE_AXIS));
+        mainPanel.add(Box.createRigidArea(new Dimension(50, 0)));
+        mainPanel.add(initCenterColumn());
+        mainPanel.add(Box.createRigidArea(new Dimension(50, 0)));
+
+        return mainPanel;
+    }
+
+    private JPanel initCenterColumn() {
+        JPanel centerColumn = new JPanel();
+
         String labelText = "[Empty Label]";
         JLabel label = new JLabel(labelText);
-        getContentPane().add(label);
-        pack();
-        setVisible(true);
+        centerColumn.add(label);
+        return centerColumn;
     }
 }
