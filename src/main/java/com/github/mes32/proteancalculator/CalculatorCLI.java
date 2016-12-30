@@ -11,16 +11,34 @@ import java.io.*;
 
 class CalculatorCLI {
     CalculatorCLI() {
-        System.out.println(" - CalculatorCLI - ");
+
     }
 
     public boolean evaluate(BufferedReader reader) {
-        System.out.println("CalculatorCLI.evaluate() - BufferedReader");
-        return false;
+
+        String expression = null;
+        boolean foundExpression = false;
+        while (true) {
+            try {
+                if (!reader.ready()) {
+                    return foundExpression;
+                }
+
+                expression = reader.readLine();
+                if (expression == null || expression.equals("")) {
+                    break;
+                }
+                evaluate(expression);
+                foundExpression = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }   
+        }
+        return foundExpression;
     }
 
-    public boolean evaluate(String line) {
-        System.out.println("CalculatorCLI.evaluate() - String");
-        return false;
+    public void evaluate(String expression) {
+        System.out.println("CalculatorCLI.evaluate() - expression = " + expression);
     }
 }
