@@ -16,7 +16,11 @@ class CalculatorDataModel {
     private String currentValue;
     private String previousValue;
 
-    CalculatorDataModel(CalculatorView view) {
+    CalculatorDataModel() {
+        
+    }
+
+    public void setView(CalculatorView view) {
         this.view = view;
     }
 }

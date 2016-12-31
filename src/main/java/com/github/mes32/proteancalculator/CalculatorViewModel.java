@@ -16,8 +16,13 @@ class CalculatorViewModel {
     private static final Dimension CENTER_COLUMN_LEFT_MARGIN = new Dimension(20, 0);
     private static final Dimension CENTER_COLUMN_RIGHT_MARGIN = new Dimension(20, 0);
     private static final Dimension ROW_SPACER = new Dimension(0, 10);
+    private static final Dimension BUTTON_SPACER = new Dimension(0, 5);
 
-    CalculatorViewModel(CalculatorView view) {
+    CalculatorViewModel() {
+        
+    }
+
+    public void setView(CalculatorView view) {
         this.view = view;
     }
 
@@ -32,4 +37,9 @@ class CalculatorViewModel {
     public Dimension getRowSpacer() {
         return ROW_SPACER;
     }
+
+    public Dimension getButtonSpacer() {
+        return BUTTON_SPACER;
+    }
+
 }
