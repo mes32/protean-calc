@@ -18,6 +18,8 @@ class CalculatorView extends JFrame {
     private CalculatorViewModel viewModel;
     private CalculatorController controller;
 
+    private JLabel displayLabel;
+
     CalculatorView(CalculatorViewModel viewModel, CalculatorController controller) {
         super(GUI_TITLE);
         this.viewModel = viewModel;
@@ -67,11 +69,11 @@ class CalculatorView extends JFrame {
         JPanel row1 = new JPanel();
 
         String labelText = "[ DISPLAY ]";
-        JLabel label = new JLabel(labelText);
-        label.setBackground(new Color(180, 180, 255));
-        label.setForeground(Color.WHITE);
-        label.setOpaque(true);
-        row1.add(label);
+        displayLabel = new JLabel(labelText);
+        displayLabel.setBackground(new Color(180, 180, 255));
+        displayLabel.setForeground(Color.WHITE);
+        displayLabel.setOpaque(true);
+        row1.add(displayLabel);
 
         return row1;
     }
@@ -204,5 +206,10 @@ class CalculatorView extends JFrame {
         row6.add(button);
 
         return row6;
+    }
+
+    public void updateDisplay(String newText) {
+        displayLabel.setText(newText);
+
     }
 }

@@ -16,7 +16,7 @@ class CalculatorController {
     }
 
     public void pressClear() {
-        System.out.println("In CalculatorController.java - pressClear()");
+        dataModel.clear();
     }
 
     public void pressEquals() {
@@ -40,7 +40,7 @@ class CalculatorController {
     }
 
     public void pressPlusMinus() {
-        System.out.println("In CalculatorController.java - pressPlusMinus()");
+        dataModel.negate();
     }
 
     public void pressPercent() {
@@ -52,43 +52,43 @@ class CalculatorController {
     }
 
     public void press0() {
-        System.out.println("In CalculatorController.java - press0()");
+        dataModel.append(0);
     }
 
     public void press1() {
-        System.out.println("In CalculatorController.java - press1()");
+        dataModel.append(1);
     }
 
     public void press2() {
-        System.out.println("In CalculatorController.java - press2()");
+        dataModel.append(2);
     }
 
     public void press3() {
-        System.out.println("In CalculatorController.java - press3()");
+        dataModel.append(3);
     }
 
     public void press4() {
-        System.out.println("In CalculatorController.java - press4()");
+        dataModel.append(4);
     }
 
     public void press5() {
-        System.out.println("In CalculatorController.java - press5()");
+        dataModel.append(5);
     }
 
     public void press6() {
-        System.out.println("In CalculatorController.java - press6()");
+        dataModel.append(6);
     }
 
     public void press7() {
-        System.out.println("In CalculatorController.java - press7()");
+        dataModel.append(7);
     }
 
     public void press8() {
-        System.out.println("In CalculatorController.java - press8()");
+        dataModel.append(8);
     }
 
     public void press9() {
-        System.out.println("In CalculatorController.java - press9()");
+        dataModel.append(9);
     }
 
 }
