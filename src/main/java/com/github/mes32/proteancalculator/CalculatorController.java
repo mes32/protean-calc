@@ -20,23 +20,23 @@ class CalculatorController {
     }
 
     public void pressEquals() {
-        dataModel.evaluate();
+        System.out.println("In CalculatorController.java - pressEquals()");
     }
 
     public void pressAdd() {
-        dataModel.setFunctionAdd();
+        System.out.println("In CalculatorController.java - pressAdd()");
     }
 
     public void pressSubtract() {
-        dataModel.setFunctionSubtract();
+        System.out.println("In CalculatorController.java - pressSubtract()");
     }
 
     public void pressDivide() {
-        dataModel.setFunctionDivide();
+        System.out.println("In CalculatorController.java - pressDivide()");
     }
 
     public void pressMultiply() {
-        dataModel.setFunctionMultiply();
+        System.out.println("In CalculatorController.java - pressMultiply()");
     }
 
     public void pressPlusMinus() {
@@ -44,11 +44,11 @@ class CalculatorController {
     }
 
     public void pressPercent() {
-        dataModel.percent();
+        System.out.println("In CalculatorController.java - pressPercent()");
     }
 
     public void pressDecimal() {
-        dataModel.setDecimal();
+        System.out.println("In CalculatorController.java - pressDecimal()");
     }
 
     public void press0() {

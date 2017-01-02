@@ -68,9 +68,11 @@ class CalculatorView extends JFrame {
     private JPanel initRow1() {
         JPanel row1 = new JPanel();
 
-        String labelText = "0";
+        String labelText = "[ DISPLAY ]";
         displayLabel = new JLabel(labelText);
-        displayLabel.setForeground(Color.BLACK);
+        displayLabel.setBackground(new Color(180, 180, 255));
+        displayLabel.setForeground(Color.WHITE);
+        displayLabel.setOpaque(true);
         row1.add(displayLabel);
 
         return row1;

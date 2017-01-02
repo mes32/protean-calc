@@ -30,38 +30,9 @@ class CalculatorDataModel {
         display();
     }
 
-    public void evaluate() {
-        System.out.println("In CalculatorDataModel - evaluate()");
-    }
-
-    public void setFunctionAdd() {
-        System.out.println("In CalculatorDataModel - setFunctionAdd()");
-    }
-
-    public void setFunctionSubtract() {
-        System.out.println("In CalculatorDataModel - setFunctionSubtract()");
-    }
-
-    public void setFunctionDivide() {
-        System.out.println("In CalculatorDataModel - setFunctionDivide()");
-    }
-
-    public void setFunctionMultiply() {
-        System.out.println("In CalculatorDataModel - setFunctionMultiply()");
-    }
-
     public void negate() {
         currentValue *= -1;
         display();
-    }
-
-    public void percent() {
-        currentValue /= 100;
-        display();
-    }
-
-    public void setDecimal() {
-        System.out.println("In CalculatorDataModel - setDecimal()");
     }
 
     public void append(int input) {
