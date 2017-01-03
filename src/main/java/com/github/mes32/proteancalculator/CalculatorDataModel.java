@@ -12,9 +12,23 @@ import javax.swing.*;
 
 class CalculatorDataModel {
 
+    private static final Subtraction SUBTRACT = new Subtraction();
+    private static final Addition ADD = new Addition();
+    private static final Division DIVIDE = new Division();
+    private static final Multiplication MULTIPLY = new Multiplication();
+
+
     private CalculatorView view;
     private double currentValue;
     private double previousValue;
+
+    //private double displayedValue;
+    //private double agregateValue;
+    //private double actorValue;
+
+    private int decimalPrecision;
+
+    private ArithmeticOperator operator;
 
     CalculatorDataModel() {
         currentValue = 0;
@@ -30,9 +44,38 @@ class CalculatorDataModel {
         display();
     }
 
+    public void evaluate() {
+        System.out.println("In CalculatorDataModel - evaluate()");
+    }
+
+    public void setFunctionAdd() {
+        System.out.println("In CalculatorDataModel - setFunctionAdd()");
+    }
+
+    public void setFunctionSubtract() {
+        operator = SUBTRACT;
+    }
+
+    public void setFunctionDivide() {
+        System.out.println("In CalculatorDataModel - setFunctionDivide()");
+    }
+
+    public void setFunctionMultiply() {
+        System.out.println("In CalculatorDataModel - setFunctionMultiply()");
+    }
+
     public void negate() {
         currentValue *= -1;
         display();
+    }
+
+    public void percent() {
+        currentValue /= 100;
+        display();
+    }
+
+    public void setDecimal() {
+        System.out.println("In CalculatorDataModel - setDecimal()");
     }
 
     public void append(int input) {
