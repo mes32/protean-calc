@@ -19,20 +19,24 @@ class CalculatorDataModel {
 
 
     private CalculatorView view;
-    private double currentValue;
-    private double previousValue;
 
-    //private double displayedValue;
-    //private double agregateValue;
-    //private double actorValue;
+    private double displayNumber;
+    private double agregateNumber;
+    private double actorNumber;
 
     private int decimalPrecision;
+
+    private boolean isOperatorSet;
 
     private ArithmeticOperator operator;
 
     CalculatorDataModel() {
-        currentValue = 0;
-        previousValue = 0;
+        displayNumber = 0.0;
+        agregateNumber = 0.0;
+        actorNumber = 0.0;
+
+        operator = null;
+        isOperatorSet = false;
     }
 
     public void setView(CalculatorView view) {
@@ -40,37 +44,49 @@ class CalculatorDataModel {
     }
 
     public void clear() {
-        currentValue = 0;
+        displayNumber = 0.0;
+        agregateNumber = 0.0;
+        actorNumber = 0.0;
+
+        operator = null;
+        isOperatorSet = false;
+
         display();
     }
 
     public void evaluate() {
-        System.out.println("In CalculatorDataModel - evaluate()");
+        agregateNumber = operator.evaluate(agregateNumber, actorNumber);
+        displayNumber = agregateNumber;
+        display();
     }
 
     public void setFunctionAdd() {
-        System.out.println("In CalculatorDataModel - setFunctionAdd()");
+        operator = ADD;
+        isOperatorSet = true;
     }
 
     public void setFunctionSubtract() {
         operator = SUBTRACT;
+        isOperatorSet = true;
     }
 
     public void setFunctionDivide() {
-        System.out.println("In CalculatorDataModel - setFunctionDivide()");
+        operator = DIVIDE;
+        isOperatorSet = true;
     }
 
     public void setFunctionMultiply() {
-        System.out.println("In CalculatorDataModel - setFunctionMultiply()");
+        operator = MULTIPLY;
+        isOperatorSet = true;
     }
 
     public void negate() {
-        currentValue *= -1;
+        displayNumber *= -1;
         display();
     }
 
     public void percent() {
-        currentValue /= 100;
+        displayNumber /= 100;
         display();
     }
 
@@ -79,12 +95,19 @@ class CalculatorDataModel {
     }
 
     public void append(int input) {
-        currentValue = 10 * currentValue + input;
+        if (isOperatorSet) {
+            isOperatorSet = false;
+            agregateNumber = displayNumber;
+            displayNumber = 0.0;
+        }
+
+        displayNumber = 10 * displayNumber + input;
+        actorNumber = displayNumber;
         display();
     }
 
     private void display() {
-        view.updateDisplay(formatForDisplay(currentValue));
+        view.updateDisplay(formatForDisplay(displayNumber));
     }
 
     private String formatForDisplay(double input) {
