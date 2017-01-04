@@ -24,11 +24,10 @@ class CalculatorDataModel {
     private double agregateNumber;
     private double actorNumber;
 
-    private int decimalPrecision;
-
-    private boolean isOperatorSet;
-
     private ArithmeticOperator operator;
+    private boolean isOperatorSet;
+    private boolean displayDecimal;
+    private int decimalPrecision;
 
     CalculatorDataModel() {
         displayNumber = 0.0;
@@ -37,6 +36,8 @@ class CalculatorDataModel {
 
         operator = null;
         isOperatorSet = false;
+        displayDecimal = false;
+        decimalPrecision = 0;
     }
 
     public void setView(CalculatorView view) {
@@ -50,6 +51,8 @@ class CalculatorDataModel {
 
         operator = null;
         isOperatorSet = false;
+        displayDecimal = false;
+        decimalPrecision = 0;
 
         display();
     }
@@ -57,27 +60,37 @@ class CalculatorDataModel {
     public void evaluate() {
         agregateNumber = operator.evaluate(agregateNumber, actorNumber);
         displayNumber = agregateNumber;
+        displayDecimal = false;
+        decimalPrecision = 0;
         display();
     }
 
     public void setFunctionAdd() {
         operator = ADD;
         isOperatorSet = true;
+        displayDecimal = false;
+        decimalPrecision = 0;
     }
 
     public void setFunctionSubtract() {
         operator = SUBTRACT;
         isOperatorSet = true;
+        displayDecimal = false;
+        decimalPrecision = 0;
     }
 
     public void setFunctionDivide() {
         operator = DIVIDE;
         isOperatorSet = true;
+        displayDecimal = false;
+        decimalPrecision = 0;
     }
 
     public void setFunctionMultiply() {
         operator = MULTIPLY;
         isOperatorSet = true;
+        displayDecimal = false;
+        decimalPrecision = 0;
     }
 
     public void negate() {
@@ -87,13 +100,14 @@ class CalculatorDataModel {
     }
 
     public void percent() {
-        displayNumber /= 100;
+        displayNumber /= 100.0;
         actorNumber = displayNumber;
         display();
     }
 
     public void setDecimal() {
-        System.out.println("In CalculatorDataModel - setDecimal()");
+        displayDecimal = true;
+        display();
     }
 
     public void append(int input) {
@@ -103,7 +117,13 @@ class CalculatorDataModel {
             displayNumber = 0.0;
         }
 
-        displayNumber = 10 * displayNumber + input;
+        if (!displayDecimal) {
+            displayNumber = 10.0 * displayNumber + input;
+        } else {
+            decimalPrecision += 1;
+            displayNumber = displayNumber + (input / (Math.pow(10, decimalPrecision)));
+        }
+
         actorNumber = displayNumber;
         display();
     }
@@ -114,7 +134,11 @@ class CalculatorDataModel {
 
     private String formatForDisplay(double input) {
         if (input == (long) input)
-            return String.format("%d", (long)input);
+            if (!displayDecimal) {
+                return String.format("%d", (long)input);
+            } else {
+                return String.format("%d", (long)input) + ".";
+            }
         else
             return String.valueOf(input);
     }
