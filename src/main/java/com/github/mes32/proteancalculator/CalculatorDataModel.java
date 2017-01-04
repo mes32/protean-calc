@@ -82,11 +82,13 @@ class CalculatorDataModel {
 
     public void negate() {
         displayNumber *= -1;
+        actorNumber = displayNumber;
         display();
     }
 
     public void percent() {
         displayNumber /= 100;
+        actorNumber = displayNumber;
         display();
     }
 
