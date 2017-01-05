@@ -24,6 +24,10 @@ class CalculatorDataModel {
     private double agregateNumber;
     private double actorNumber;
 
+    private String enteredNum;
+    private PrecisionNumber agregateNum;
+    private PrecisionNumber actorNum;
+
     private ArithmeticOperator operator;
     private boolean isOperatorSet;
     private boolean displayDecimal;
