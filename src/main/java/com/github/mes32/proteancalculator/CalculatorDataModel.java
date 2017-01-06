@@ -9,38 +9,26 @@ package com.github.mes32.proteancalculator;
 
 import java.io.*;
 import javax.swing.*;
+import java.math.*;
 
 class CalculatorDataModel {
 
-    private static final Subtraction SUBTRACT = new Subtraction();
-    private static final Addition ADD = new Addition();
-    private static final Division DIVIDE = new Division();
-    private static final Multiplication MULTIPLY = new Multiplication();
-
+    private static final BigDecimal BD_100 = new BigDecimal("100.0");
 
     private CalculatorView view;
 
-    private double displayNumber;
-    private double agregateNumber;
-    private double actorNumber;
-
-    private String enteredNum;
+    private String enteredNumber;
     private boolean enteredSomething;
     private boolean enteredDecimalPoint;
 
-    private PrecisionNumber displayNum;
-    private PrecisionNumber agregateNum;
-    private PrecisionNumber actorNum;
+    private BigDecimal agregateNumber;
+    private BigDecimal actorNumber;
 
     private ArithmeticOperator operator;
     private boolean isOperatorSet;
 
     CalculatorDataModel() {
-        displayNumber = 0.0;
-        agregateNumber = 0.0;
-        actorNumber = 0.0;
-
-        enteredNum = "0";
+        enteredNumber = "0";
         enteredSomething = false;
         enteredDecimalPoint = false;
 
@@ -53,11 +41,7 @@ class CalculatorDataModel {
     }
 
     public void clear() {
-        displayNumber = 0.0;
-        agregateNumber = 0.0;
-        actorNumber = 0.0;
-
-        enteredNum = "0";
+        enteredNumber = "0";
         enteredSomething = false;
         enteredDecimalPoint = false;
 
@@ -68,69 +52,57 @@ class CalculatorDataModel {
     }
 
     public void evaluate() {
-        agregateNum = operator.evaluate(agregateNum, actorNum);
-        //displayNumber = agregateNumber;
-
-        // *** Temporary
-        enteredNum = agregateNum.toString();
+        agregateNumber = operator.evaluate(agregateNumber, actorNumber);
+        enteredNumber = agregateNumber.toPlainString();
         display();
     }
 
-    public void setFunctionAdd() {
-        operator = ADD;
-        isOperatorSet = true;
-        enteredSomething = false;
-        enteredDecimalPoint = false;
+    public void setOperatorAdd() {
+        setOperator(ArithmeticOperator.ADD);
     }
 
-    public void setFunctionSubtract() {
-        operator = SUBTRACT;
-        isOperatorSet = true;
-        enteredSomething = false;
-        enteredDecimalPoint = false;
+    public void setOperatorDivide() {
+        setOperator(ArithmeticOperator.DIVIDE);
     }
 
-    public void setFunctionDivide() {
-        operator = DIVIDE;
-        isOperatorSet = true;
-        enteredSomething = false;
-        enteredDecimalPoint = false;
+    public void setOperatorMultiply() {
+        setOperator(ArithmeticOperator.MULTIPLY);
     }
 
-    public void setFunctionMultiply() {
-        operator = MULTIPLY;
+    public void setOperatorSubtract() {
+        setOperator(ArithmeticOperator.SUBTRACT);
+    }
+
+    private void setOperator(ArithmeticOperator operator) {
+        if (!enteredSomething) {
+            return;
+        }
+
+        this.operator = operator;
         isOperatorSet = true;
         enteredSomething = false;
         enteredDecimalPoint = false;
     }
 
     public void negate() {
-        //displayNumber *= -1;
-        //actorNumber = displayNumber;
+        actorNumber = new BigDecimal(enteredNumber);
+        actorNumber = actorNumber.negate();
 
-        actorNum = new PrecisionNumber(enteredNum);
-        PrecisionNumber negativeOne = new PrecisionNumber("-1.0");
-        actorNum = actorNum.multiply(negativeOne);
-
-        enteredNum = actorNum.toString();
+        enteredNumber = actorNumber.toPlainString();
         display();
     }
 
     public void percent() {
-        //displayNumber /= 100.0;
-        //actorNumber = displayNumber;
+        actorNumber = new BigDecimal(enteredNumber);
+        actorNumber = actorNumber.divide(BD_100);
 
-        actorNum = new PrecisionNumber(enteredNum);
-        PrecisionNumber oneHundred = new PrecisionNumber("100.0");
-        actorNum = actorNum.divide(oneHundred);
-
-        enteredNum = actorNum.toString();
+        enteredNumber = actorNumber.toPlainString();
         display();
     }
 
     public void setDecimal() {
         if (!enteredDecimalPoint) {
-            enteredNum += ".";
+            enteredNumber += ".";
             enteredSomething = true;
             enteredDecimalPoint = true;
         }
@@ -140,36 +112,23 @@ class CalculatorDataModel {
     public void append(int input) {
         if (isOperatorSet) {
             isOperatorSet = false;
-            agregateNumber = displayNumber;
             enteredSomething = false;
             enteredDecimalPoint = false;
+            agregateNumber = actorNumber;
         }
 
         if (!enteredSomething) {
-            enteredNum = "" + input;
+            enteredNumber = "" + input;
         } else {
-            enteredNum += input;
+            enteredNumber += input;
         }
         enteredSomething = true;
-
-        // *** Temporary. Parse displayNumber and actorNumber from enteredNum
-        //displayNumber = Double.parseDouble(enteredNum);
-        //actorNumber = Double.parseDouble(enteredNum);
-
-        displayNum = new PrecisionNumber(enteredNum);  // displayNum shouldn't be needed
-        actorNum = new PrecisionNumber(enteredNum);
+        actorNumber = new BigDecimal(enteredNumber);
 
         display();
     }
 
     private void display() {
-        view.updateDisplay(enteredNum);
-    }
-
-    private String formatForDisplay(double input) {
-        if (input == (long) input)
-            return String.format("%d", (long)input);
-        else
-            return String.valueOf(input);
+        view.updateDisplay(enteredNumber);
     }
 }

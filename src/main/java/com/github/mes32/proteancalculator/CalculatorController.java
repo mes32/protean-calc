@@ -24,19 +24,19 @@ class CalculatorController {
     }
 
     public void pressAdd() {
-        dataModel.setFunctionAdd();
+        dataModel.setOperatorAdd();
     }
 
     public void pressSubtract() {
-        dataModel.setFunctionSubtract();
+        dataModel.setOperatorSubtract();
     }
 
     public void pressDivide() {
-        dataModel.setFunctionDivide();
+        dataModel.setOperatorDivide();
     }
 
     public void pressMultiply() {
-        dataModel.setFunctionMultiply();
+        dataModel.setOperatorMultiply();
     }
 
     public void pressPlusMinus() {
