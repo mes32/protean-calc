@@ -68,11 +68,11 @@ class CalculatorDataModel {
     }
 
     public void evaluate() {
-        agregateNumber = operator.evaluate(agregateNumber, actorNumber);
-        displayNumber = agregateNumber;
+        agregateNum = operator.evaluate(agregateNum, actorNum);
+        //displayNumber = agregateNumber;
 
         // *** Temporary
-        enteredNum = "" + displayNumber;
+        enteredNum = agregateNum.toString();
         display();
     }
 
@@ -105,20 +105,26 @@ class CalculatorDataModel {
     }
 
     public void negate() {
-        displayNumber *= -1;
-        actorNumber = displayNumber;
+        //displayNumber *= -1;
+        //actorNumber = displayNumber;
 
-        // *** Temporary
-        enteredNum = "" + displayNumber;
+        actorNum = new PrecisionNumber(enteredNum);
+        PrecisionNumber negativeOne = new PrecisionNumber("-1.0");
+        actorNum = actorNum.multiply(negativeOne);
+
+        enteredNum = actorNum.toString();
         display();
     }
 
     public void percent() {
-        displayNumber /= 100.0;
-        actorNumber = displayNumber;
+        //displayNumber /= 100.0;
+        //actorNumber = displayNumber;
 
-        // *** Temporary
-        enteredNum = "" + displayNumber;
+        actorNum = new PrecisionNumber(enteredNum);
+        PrecisionNumber oneHundred = new PrecisionNumber("100.0");
+        actorNum = actorNum.divide(oneHundred);
+
+        enteredNum = actorNum.toString();
         display();
     }
 
@@ -147,14 +153,17 @@ class CalculatorDataModel {
         enteredSomething = true;
 
         // *** Temporary. Parse displayNumber and actorNumber from enteredNum
-        displayNumber = Double.parseDouble(enteredNum);
-        actorNumber = Double.parseDouble(enteredNum);
+        //displayNumber = Double.parseDouble(enteredNum);
+        //actorNumber = Double.parseDouble(enteredNum);
+
+        displayNum = new PrecisionNumber(enteredNum);  // displayNum shouldn't be needed
+        actorNum = new PrecisionNumber(enteredNum);
 
         display();
     }
 
     private void display() {
-        view.updateDisplay(formatForDisplay(displayNumber));
+        view.updateDisplay(enteredNum);
     }
 
     private String formatForDisplay(double input) {
