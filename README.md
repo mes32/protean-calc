@@ -1,5 +1,7 @@
 # protean-calculator
 
+[![Build Status](https://travis-ci.org/mes32/protean-calculator.svg?branch=master)](https://travis-ci.org/mes32/protean-calculator)
+
 Calculator program with an extremely customizable graphical interface. Note, this is still a work in progress.
 
 ## Requirements
