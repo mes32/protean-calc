@@ -1,18 +1,33 @@
 apply plugin: 'java'
 
-repositories {
-  mavenCentral()
-}
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
 jar {
-  baseName = 'protean-calculator'
-  manifest {
-	attributes(
-      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'com.github.mes32.proteancalculator.ProteanCalculator'
-    )
-  }
+    baseName = 'protean-calculator'
+
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+
+        configurations.runtime.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest {
+        attributes(
+            'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+            'Main-Class': 'com.github.mes32.proteancalculator.ProteanCalculator'
+        )
+    }
 }

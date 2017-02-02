@@ -25,12 +25,16 @@ class CalculatorView extends JFrame {
         this.viewModel = viewModel;
         this.controller = controller;
 
-        add(intiMainPanel());
+        update();
 
-        pack();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    public void update() {
+        add(intiMainPanel());
+        pack();
     }
 
     private JPanel intiMainPanel() {
@@ -69,6 +73,7 @@ class CalculatorView extends JFrame {
         JPanel row1 = new JPanel();
 
         displayLabel = new JLabel("0");
+        displayLabel.setForeground(viewModel.getDisplayForeground());
         row1.add(displayLabel);
 
         return row1;

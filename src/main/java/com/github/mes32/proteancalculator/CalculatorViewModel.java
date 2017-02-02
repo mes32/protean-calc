@@ -8,6 +8,7 @@
 package com.github.mes32.proteancalculator;
 
 import java.awt.Dimension;
+import java.awt.Color;
 
 class CalculatorViewModel {
 
@@ -18,8 +19,10 @@ class CalculatorViewModel {
     private static final Dimension ROW_SPACER = new Dimension(0, 10);
     private static final Dimension BUTTON_SPACER = new Dimension(0, 5);
 
+    private Color displayForeground;
+
     CalculatorViewModel() {
-        
+        displayForeground = Color.BLACK;
     }
 
     public void setView(CalculatorView view) {
@@ -40,6 +43,14 @@ class CalculatorViewModel {
 
     public Dimension getButtonSpacer() {
         return BUTTON_SPACER;
+    }
+
+    public Color getDisplayForeground() {
+        return displayForeground;
+    }
+
+    public void setDisplayForeground(Color color) {
+        displayForeground = color;
     }
 
 }
