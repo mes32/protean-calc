@@ -10,7 +10,7 @@ package com.github.mes32.proteancalculator;
 import java.math.*;
 
 
-abstract class ArithmeticOperator {
+public abstract class ArithmeticOperator {
 
     public static final Add ADD = new Add();
     public static final Divide DIVIDE = new Divide();
