@@ -36,6 +36,10 @@ class CalculatorDataModel {
         isOperatorSet = false;
     }
 
+    public String getEnteredNumber() {
+        return enteredNumber;
+    }
+
     public void setView(CalculatorView view) {
         this.view = view;
     }

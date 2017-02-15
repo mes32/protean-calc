@@ -20,7 +20,7 @@ class CalculatorGUI {
         dataModel = new CalculatorDataModel();
         viewModel = new CalculatorViewModel();
         controller = new CalculatorController(dataModel);
-        view = new CalculatorView(viewModel, controller);
+        view = new CalculatorView(dataModel, viewModel, controller);
         dataModel.setView(view);
         viewModel.setView(view);
 

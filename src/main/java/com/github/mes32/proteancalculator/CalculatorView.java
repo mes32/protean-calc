@@ -15,13 +15,15 @@ import javax.swing.*;
 class CalculatorView extends JFrame {
 
     private static final String GUI_TITLE = "Calculator";
+    private CalculatorDataModel dataModel;
     private CalculatorViewModel viewModel;
     private CalculatorController controller;
 
     private JLabel displayLabel;
 
-    CalculatorView(CalculatorViewModel viewModel, CalculatorController controller) {
+    CalculatorView(CalculatorDataModel dataModel, CalculatorViewModel viewModel, CalculatorController controller) {
         super(GUI_TITLE);
+        this.dataModel = dataModel;
         this.viewModel = viewModel;
         this.controller = controller;
 
@@ -72,7 +74,7 @@ class CalculatorView extends JFrame {
     private JPanel initRow1() {
         JPanel row1 = new JPanel();
 
-        displayLabel = new JLabel("0");
+        displayLabel = new JLabel(dataModel.getEnteredNumber());
         displayLabel.setForeground(viewModel.getDisplayForeground());
         row1.add(displayLabel);
 

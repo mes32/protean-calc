@@ -21,19 +21,49 @@ class ConfigurationView extends JFrame {
         this.controller = controller;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        String labelText = "[Empty Label]";
-        JLabel label = new JLabel(labelText);
-        getContentPane().add(label);
+
+        JButton button = new JButton("Randomize Display Foreground Color");
+        button.addActionListener(e -> controller.pressRandomizeDisplayForegroundColor());
+        getContentPane().add(button);
+
         pack();
         setVisible(true);
 
         /*
         Sections:
-            Dimensions
-            Typefaces
             Display
+                Text
+                    Typeface
+                    Type size
+                    Type color
+                    Alignment
+                Margin
+                Padding
+                Border width
+                Border color
+                Background color
             Buttons
-            Colors
+                Style
+                Text
+                    ...
+                Margin
+                Border width
+            Operators
+                Unpressed
+                    Text color
+                    Border color
+                    Background color
+                    Shadow
+                Pressed
+                    Linked with Upressed
+                Hover
+                    Link with Upressed
+            Secondary Operators
+                Linked with Operators
+            Digits
+            Background
+                Margins
+                Color
         */
     }
 }

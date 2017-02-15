@@ -51,6 +51,7 @@ class CalculatorViewModel {
 
     public void setDisplayForeground(Color color) {
         displayForeground = color;
+        view.update();
     }
 
 }
