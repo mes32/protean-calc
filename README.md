@@ -4,6 +4,8 @@
 
 Calculator program with an extremely customizable graphical interface. Note, this is still a work in progress.
 
+!["Example of running calculator window"](./docs/images/calculator_gui_example.png)
+
 ## Requirements
 
 - [Gradle](https://gradle.org/)
